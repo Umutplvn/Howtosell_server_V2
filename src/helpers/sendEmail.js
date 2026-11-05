@@ -420,7 +420,7 @@ const sendEmail = async ({
 
   const mailOptions = {
     from: '"HowToSell" <howtosell.inquiries@gmail.com>',
-    to: "umut.codes@gmail.com",
+    to: "babar@howtosell.io",
     // Burasi degistirilecek
     subject: `New Customer Lead | ${fullName.replace(/[\\r\\n]/g, " ")}`,
     html,
