@@ -1,0 +1,1 @@
+Existing user collection gets joinedWaitlist and waitlistJoinedAt fields. POST /api/user/waitlist marks an existing low-budget applicant who explicitly opts in; no separate waitlist collection. Verify MongoDB connectivity and test on staging before production.
