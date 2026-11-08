@@ -14,8 +14,19 @@ const cors = require('cors');
 /*--------------------------------------*/
 
 app.use(express.json())
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "https://howtosell.io",
+    "https://www.howtosell.io"
+  ],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
 
+app.use(express.json());
 /*--------------------------------------*/
 //! Connect to MongoDB with Mongoose:
 const connectDB = require('./src/configs/dbConnection');
