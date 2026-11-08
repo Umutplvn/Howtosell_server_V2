@@ -16,8 +16,12 @@ router.post('/waitlist', async (req, res) => {
   try {
     const lead = await UserModel.findOne({ email }).collation({ locale: 'en', strength: 2 });
     if (!lead) return res.status(404).json({ error: true, message: 'Application not found. Please use the email from your application.' });
-    if (lead.investment !== 'Under €10,000') return res.status(400).json({ error: true, message: 'Waitlist is available for lower-budget applicants.' });
-    lead.joinedWaitlist = true;
+if (!['Under €10,000', '€5,000–€10,000'].includes(lead.investment)) {
+  return res.status(400).json({
+    error: true,
+    message: 'Waitlist is available for lower-budget applicants.'
+  });
+}    lead.joinedWaitlist = true;
     if (!lead.waitlistJoinedAt) lead.waitlistJoinedAt = new Date();
     await lead.save();
     return res.json({ error: false, message: 'You have joined the waitlist.' });
